@@ -124,12 +124,3 @@ Sur votre machine, continuer le [tutoriel](http://spark.apache.org/docs/1.6.0/qu
 
 Il doit également être possible de réaliser ce TP en Python, mais aucun test n'a été effectué en amont et le support sera limité.
 
-
-# TODO
-- [ ] fournir une commande SSH avec tous les ports utiles au TP
-- [ ] compléter la section HDFS en se basant sur le TP de l'an dernier
-- [ ] regarder le lancement d'une application Spark
-- [ ] facteur de réplication
-- [ ] mentionner assembly https://github.com/sbt/sbt-assembly
-- [ ] vérifier l'URL HDFS pour l'accès aux fichiers depuis spark: ` ` `hdfs://<namenode>:9000/path`
-- [ ] vérifier HADOOP_CONF_DIR or YARN_CONF_DIR variable (http://spark.apache.org/docs/1.6.0/submitting-applications.html) 
