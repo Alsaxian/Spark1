@@ -6,7 +6,7 @@ Il est donc important d'avoir suivi le [tutoriel Scala](TODO) avant de commencer
 
 ## Jeu de données
 
-Dans ce TP, on travaillera sur un jeu de données issue d'observations astronomiques.
+Dans ce TP, on travaillera sur un jeu de données issue d'observations astronomiques issues du projet [PetaSky](http://com.isima.fr/Petasky).
 On considèrera essentiellement deux relations: SOURCE et OBJECT.
 SOURCE contient des données observationnelles.
 OBJECT contient des informations sur les objets célestes associés aux observations.
@@ -132,7 +132,36 @@ Sur votre machine, continuer le [tutoriel](http://spark.apache.org/docs/1.6.0/qu
 Avant de déployer une tâche Spark pouvant prendre du temps sur le cluster, il est bon de pouvoir tester son fonctionnement local.
 Le fichier `src/test/scala/SampleSparkTest.scala` donne un exemple de test unitaire comptant le nombre de lignes du fichier `samples/object-sample`.
 
+### Exercice
+
 Créer un test unitaire pour l'application `SparkTPApp1`.
+Pour cela, il faut séparer la fonctionnalité de mise en place du contexte Spark du calcul fait sur les données en plaçant ce dernier dans une méthode séparée.
+
+## Fichiers CSV et correspondance attribut - index
+
+Avant de traiter les données d'astronomie, il est nécessaire de se doter de fonctions utilitaires qui vont simplifier la suite des opérations.
+En particulier, il est utile de construire une liste d'attributs pour Source et Object, ainsi que de connaître la position de chacun des attributs.
+Pour cela, on va lire le fichier SQL contenant le schéma, en utilisant les remarques suivantes:
+
+* Le fichier contient un attribut par ligne.
+* La première et la dernière ligne du fichier ne concernent pas les attributs.
+* Dans une ligne, le premier mot est le nom de l'attribut.
+
+### Exercice
+
+Créer un objet Scala PetaSkySchema contenant une fonction de lecture de schéma qui:
+
+* prend un nom de fichier en argument
+* lit le fichier
+* produit la liste ordonnée des attributs
+
+Ajouter à cet objet 
+* deux valeurs: la liste des attributs de Object et celle des attributs de Source
+* pour chaque attribut utilisé dans le TP, une valeur donnant sont index
+
+> Ne pas passer trop de temps sur cet exercice: s'il ne fonctionne pas rapidement, déclarer directement les index des attributs d'intérêt en comptant les lignes à la main dans les fichiers SQL.
+
+## Lecture d'un fichier CSV et compte d'occurrences
 
 
 
