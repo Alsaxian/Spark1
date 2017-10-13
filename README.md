@@ -163,7 +163,35 @@ Ajouter à cet objet
 
 ## Lecture d'un fichier CSV et compte d'occurrences
 
+Créer une application Spark `SparkTPApp2` qui lit depuis le HDFS un fichier csv issu de Source dont le nom est passé en ligne de commande, puis affiche pour chaque valeur d'`objectId` le nombre de ligne qui la contient.
 
+Cela revient à la requête SQL suivante:
+```sql
+SELECT object_id, count(*)
+FROM source
+WHERE object_id IS NOT NULL
+GROUP BY object_id
+```
+
+Écrire un test Spark pour vérifier votre fonction de calcul sur `samples/source-sample` avant de lancer l'application sur le cluster.
+
+Modifier le programme pour prendre un deuxième argument optionnel qui indique un fichier HDFS dans lequel écrire le résultat (au format CSV).
+
+Copier le fichier `/tp-data/Source/Source-001.csv` dans un sous-répertoire de votre répertoire HDFS et tester en indiquant ce fichier à lire.
+
+### Remarques
+
+* La méthode `s.split(",")` permet de découper la `String` `s` suivant la sous-chaîne `","` et permet ainsi d'obtenir la liste des valeurs.
+  Par exemple:
+  ```scala
+  scala> "a,b,c,d".split(",")
+  res0: Array[String] = Array(a, b, c, d)
+  ```
+* Les valeurs `NULL` pour `object_id` ne doivent pas être prises en compte.
+* Il existe de nombreuses méthodes sur les RDDs similaires aux `Traversable`s Scala. 
+  Il est également disponible de travailler sur le contenu d'un RDD, pour le sauver, l'afficher[^1], le compter, etc.
+  Voir [une liste de ces méthodes](http://spark.apache.org/docs/1.6.0/programming-guide.html#actions) ainsi que la [ScalaDoc pour les RDD](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.RDD) et pour [les RDD contenant des paires (clé,valeur)](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions).
+* Pour passer des arguments à une application lors de sa soumission avec `spark-submit`, il suffit de les ajouter à la fin de la commande.
 
 ## Alternatives
 
@@ -174,3 +202,5 @@ Il doit également être possible de réaliser ce TP en Python, mais aucun test 
 ### Maven
 
 A venir, pour le cas où sbt n'est pas disponible
+
+[^1]: Attention à la taille du résultat !
