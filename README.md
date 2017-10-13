@@ -33,25 +33,25 @@ Le login est votre login étudiant.
 
 Il faut se connecter en utilisant la clé SSH fournie dans la case `cle_SSH` de l'UE BigDataAnalytics sur [tomuss](http://tomusss.univ-lyon1.fr) (TODO footnote télécharger le fichier).
 
-```bash
+```shell
 ssh -i fichier-cle-ssh p1234567@192.168.73.202
 ```
 
 Pour copier un fichier sur la machine `192.168.73.202` on peut utiliser la commande suivante:
 
-```bash
+```shell
 scp -i fichier-cle-ssh fichier-a-copier p1234567@192.168.73.202:
 ```
 
 Si besoin, il est possible d'établir un **tunnel SSH** pour accéder à certaines interfaces Web.
 Par exemple, pour accéder au service exposé à l'adresse http://TODO:TODO, il convient d'établir un tunnel SSH avec la commande suivante:
 
-```bash
+```shell
 ssh -i fichier-cle-ssh p1234567@192.168.73.202 -LTODO:TODO:TODO
 ```
 
 Pour éviter d'ajouter `-i fichier-cle-ssh`, il est possible d'utiliser ssh-agent via la commande suivante:
-```bash
+```shell
 ssh-add fichier-cle-ssh
 ```
 
@@ -105,22 +105,43 @@ Sur la machine `master`, réaliser le tutoriel [Quick start](http://spark.apache
 Le fichier `README.md` à utiliser se trouve dans le répertoire `/tp-data`.
 
 Copier le fichier `README.md` dans votre répertoire HDFS, puis reprendre le début du tutoriel en accédant cette fois si au fichier dans le HDFS (supprimer le fichier du répertoire Linux courant après l'avoir copié dans HDFS pour être sûr(e) de soi).
+Pour indiquer à Spark d'accéder à un fichier dans HDFS au lieu d'un fichier dans le système de fichier standard, il suffit de précéder le nom du fichier de `hdfs://`.
+On peut par exemple utiliser `hdfs:///user/p1234567/README.md`.
 
 ### Application utilisant Spark
+
+Si ce n'est pas déjà fait, créer un nouveau projet sur la [forge Lyon 1](https://forge.univ-lyon1.fr), cloner ce projet, puis dans le répertoire obtenu récupérez le projet du TP:
+```shell
+git pull https://forge.univ-lyon1.fr/EMMANUEL.COQUERY/tp-spark-2017.git
+```
 
 Sur votre machine, continuer le [tutoriel](http://spark.apache.org/docs/1.6.0/quick-start.html#self-contained-applications) avec les modifications suivantes, afin d'utiliser le projet pré-configuré fourni:
 
 * Le fichier `build.sbt`contient déjà la configuration nécessaire
 * Le fichier scala de l'application, déjà partiellement rempli est `src/main/scala/SparkTPApp1.scala`
-* Remplacer le `"YOUR_SPARK_HOME/README.md"` par `"hdfs://tp-hadoop-cdh-secondary-tpl-01-0:9000/home/p1234567/README.md"`
+* Remplacer le `"YOUR_SPARK_HOME/README.md"` par `"hdfs:///user/p1234567/README.md"`
 * lancer `sbt assembly` après avoir lancé `sbt package`
-* copier le fichier `target/scala-2.10/SparkTPApp-assembly-1.0.jar` [^1] sur `master`
+* copier le fichier `target/scala-2.10/SparkTPApp-assembly-1.0.jar` sur `master`
 * lancer l'application directement depuis `master`:
   ```shell
-  spark-submit --class SparkTPApp1 --master yarn --deploy-mode client /home/p1234567/SparkTPApp-assembly-1.0.jar
+  spark-submit --class SparkTPApp1 /home/p1234567/SparkTPApp-assembly-1.0.jar
   ```
+
+## Tester localement avant de déployer
+
+Avant de déployer une tâche Spark pouvant prendre du temps sur le cluster, il est bon de pouvoir tester son fonctionnement local.
+Le fichier `src/test/scala/SampleSparkTest.scala` donne un exemple de test unitaire comptant le nombre de lignes du fichier `samples/object-sample`.
+
+Créer un test unitaire pour l'application `SparkTPApp1`.
+
+
 
 ## Alternatives
 
+### Python
+
 Il doit également être possible de réaliser ce TP en Python, mais aucun test n'a été effectué en amont et le support sera limité.
 
+### Maven
+
+A venir, pour le cas où sbt n'est pas disponible
