@@ -192,6 +192,7 @@ Copier le fichier `/tp-data/Source/Source-001.csv` dans un sous-répertoire de v
   Il est également disponible de travailler sur le contenu d'un RDD, pour le sauver, l'afficher[^1], le compter, etc.
   Voir [une liste de ces méthodes](http://spark.apache.org/docs/1.6.0/programming-guide.html#actions) ainsi que la [ScalaDoc pour les RDD](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.RDD) et pour [les RDD contenant des paires (clé,valeur)](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions).
 * Pour passer des arguments à une application lors de sa soumission avec `spark-submit`, il suffit de les ajouter à la fin de la commande.
+* Attention `countByKey` ne fonctionne que pour de petites collections, mais la documentation de la fonction donne une indication pour les grandes collections via `map` et `reduceByKey`.
 
 ## Alternatives
 
