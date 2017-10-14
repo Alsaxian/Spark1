@@ -10,3 +10,6 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.0" % "provided"
 
 javacOptions ++= Seq("-source", "1.7", "-target", "1.7") 
+
+// Nécessaire pour les tests Spark car un seul contexte de test Spark peut être actif
+parallelExecution in Test := false

@@ -177,7 +177,15 @@ GROUP BY object_id
 
 Modifier le programme pour prendre un deuxième argument optionnel qui indique un fichier HDFS dans lequel écrire le résultat (au format CSV).
 
-Copier le fichier `/tp-data/Source/Source-001.csv` dans un sous-répertoire de votre répertoire HDFS et tester en indiquant ce fichier à lire.
+Copier le fichier `/tp-data/Source/Source-001.csv` dans un sous-répertoire `Source` de votre répertoire HDFS et tester en indiquant ce fichier à lire.
+
+Vérifier ce qui est créé dans HDFS. 
+Est-ce ce à quoi on s'attend?
+Expliquer le comportement de Spark.
+Essayer de lancer le travail en passant en argument le répertoire HDFS `Source` au lieu du fichier `Source-001.csv` directement, déviner et vérifier le comportement de Spark.
+Ajouter le fichier `Source-002.csv` dans le HDFS, également dans `Source`, puis relancer le job Spark et vérifier qu'on obtient plus de résultats.
+
+Supprimer les fichiers résultats.
 
 ### Remarques
 
@@ -193,6 +201,33 @@ Copier le fichier `/tp-data/Source/Source-001.csv` dans un sous-répertoire de v
   Voir [une liste de ces méthodes](http://spark.apache.org/docs/1.6.0/programming-guide.html#actions) ainsi que la [ScalaDoc pour les RDD](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.RDD) et pour [les RDD contenant des paires (clé,valeur)](http://spark.apache.org/docs/1.6.0/api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions).
 * Pour passer des arguments à une application lors de sa soumission avec `spark-submit`, il suffit de les ajouter à la fin de la commande.
 * Attention `countByKey` ne fonctionne que pour de petites collections, mais la documentation de la fonction donne une indication pour les grandes collections via `map` et `reduceByKey`.
+
+## Calcul de valeurs extrémales
+
+Créer une application Spark `SparkTPApp3` qui prend en argument un répertoire de fichiers de Source, puis calcule pour chaque valeur d'`object_id`:
+
+* le plus grand `source_id`
+* les valeurs minimales et maximales de `ra` et `decl`
+
+Cela correspond à la requêtes SQL suivante:
+```sql
+SELECT object_id, count(*), max(source_id), min(ra), max(ra), min(decl), max(decl)
+FROM source
+WHERE object_id IS NOT NULL
+GROUP BY object_id
+```
+
+Tester avec un test unitaire localement, puis sur les données du répertoire HDFS `Source`.
+
+### Remarques
+
+* La fonction de réduction est plus complexe, car elle nécessite de traiter en même temps plusieurs variables.
+
+
+## L'objet qui s'est le plus déplacé
+
+Créer une dernière classe de job qui va trouver l'objet qui s'est le plus déplacé dans le ciel. 
+On se contentera ici d'une approximation grossière du déplacement qui consistera en une distance euclidienne calculée à partir des valeurs extrémales de ra et decl calculées par le job précédent (dont la sortie sera ainsi utilisée pour ce job).
 
 ## Alternatives
 

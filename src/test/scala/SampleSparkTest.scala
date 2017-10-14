@@ -22,6 +22,6 @@ class SampleSparkTest extends FunSuite with BeforeAndAfter {
 
   // exécuté après chaque test
   after {
-    sc.stop() // a ne pas oublié, car il ne peut pas y avoir 2 contextes spark locaux simultanément
+    sc.stop() // a ne pas oublier, car il ne peut pas y avoir 2 contextes spark locaux simultanément
   }
 }
