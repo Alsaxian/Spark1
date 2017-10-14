@@ -206,6 +206,7 @@ Supprimer les fichiers résultats.
 
 Créer une application Spark `SparkTPApp3` qui prend en argument un répertoire de fichiers de Source, puis calcule pour chaque valeur d'`object_id`:
 
+* le nombre de sources
 * le plus grand `source_id`
 * les valeurs minimales et maximales de `ra` et `decl`
 
@@ -222,11 +223,12 @@ Tester avec un test unitaire localement, puis sur les données du répertoire HD
 ### Remarques
 
 * La fonction de réduction est plus complexe, car elle nécessite de traiter en même temps plusieurs variables.
+* Un moyen de manipuler facilement un n-uplet de valeurs est de créer une _case class_ ad-hoc.
 
 
 ## L'objet qui s'est le plus déplacé
 
-Créer une dernière classe de job qui va trouver l'objet qui s'est le plus déplacé dans le ciel. 
+Créer une classe `SparkTPApp4` qui va trouver l'objet qui s'est le plus déplacé dans le ciel. 
 On se contentera ici d'une approximation grossière du déplacement qui consistera en une distance euclidienne calculée à partir des valeurs extrémales de ra et decl calculées par le job précédent (dont la sortie sera ainsi utilisée pour ce job).
 
 ## Alternatives
