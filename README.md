@@ -237,8 +237,5 @@ On se contentera ici d'une approximation grossière du déplacement qui consiste
 
 Il doit également être possible de réaliser ce TP en Python, mais aucun test n'a été effectué en amont et le support sera limité.
 
-### Maven
-
-A venir, pour le cas où sbt n'est pas disponible
 
 [^1]: Attention à la taille du résultat !
