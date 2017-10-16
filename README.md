@@ -33,7 +33,7 @@ Le login est votre login étudiant.
 
 > Dans la suite du TP, il faut systématiquement remplacer `p1234567` par votre login étudiant.
 
-Il faut se connecter en utilisant la clé SSH fournie dans la case `cle_SSH` de l'UE BigDataAnalytics sur [tomuss](http://tomusss.univ-lyon1.fr) (TODO footnote télécharger le fichier).
+Il faut se connecter en utilisant la clé SSH fournie dans la case `Cle_SSH` de l'UE BigDataAnalytics sur [tomuss](http://tomusss.univ-lyon1.fr).
 
 ```shell
 ssh -i fichier-cle-ssh p1234567@192.168.73.202
@@ -43,13 +43,6 @@ Pour copier un fichier sur la machine `192.168.73.202` on peut utiliser la comma
 
 ```shell
 scp -i fichier-cle-ssh fichier-a-copier p1234567@192.168.73.202:
-```
-
-Si besoin, il est possible d'établir un **tunnel SSH** pour accéder à certaines interfaces Web.
-Par exemple, pour accéder au service exposé à l'adresse http://TODO:TODO, il convient d'établir un tunnel SSH avec la commande suivante:
-
-```shell
-ssh -i fichier-cle-ssh p1234567@192.168.73.202 -LTODO:TODO:TODO
 ```
 
 Pour éviter d'ajouter `-i fichier-cle-ssh`, il est possible d'utiliser ssh-agent via la commande suivante:
@@ -96,7 +89,7 @@ hdfs dfs
 ### Exercice
 
 * lister le contenu du répertoire `/home/p1234567`
-* copier le fichier `README.md` du répertoire `/tp-data` de `master` vers le HDFS
+* copier le fichier `README.md` du répertoire `/tp-data` de `master` vers le répertoire `/user/p1234567` dans le HDFS
 * vérifier que le fichier a bien été copié en listant le contenu du répertoire, puis en affichant le contenu du fichier `README.md` après sa copie dans HDFS
 
 ## Premiers pas avec Spark
@@ -104,7 +97,8 @@ hdfs dfs
 ### Avec spark-shell
 
 Sur la machine `master`, réaliser le tutoriel [Quick start](http://spark.apache.org/docs/1.6.0/quick-start.html) jusqu'à la partie Caching inclue.
-Le fichier `README.md` à utiliser se trouve dans le répertoire `/tp-data`.
+Le fichier `README.md` à utiliser est celui que vous avez copié dans le HDFS.
+Attention, les résultats seront différents de ceux du tutoriel car le fichier n'est pas le même (c'est celui de l'énoncé du TP).
 
 Copier le fichier `README.md` dans votre répertoire HDFS, puis reprendre le début du tutoriel en accédant cette fois si au fichier dans le HDFS (supprimer le fichier du répertoire Linux courant après l'avoir copié dans HDFS pour être sûr(e) de soi).
 Pour indiquer à Spark d'accéder à un fichier dans HDFS au lieu d'un fichier dans le système de fichier standard, il suffit de précéder le nom du fichier de `hdfs://`.
@@ -240,4 +234,3 @@ On se contentera ici d'une approximation grossière du déplacement qui consiste
 Il doit également être possible de réaliser ce TP en Python, mais aucun test n'a été effectué en amont et le support sera limité.
 
 
-[^1]: Attention à la taille du résultat !
