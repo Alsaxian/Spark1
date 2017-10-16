@@ -2,7 +2,9 @@
 
 L'objectif de ce TP est de prendre en main le _framework_ [Spark](http://spark.apache.org).
 Le langage qui sera privilégié lors de ce TP sera Scala.
-Il est donc important d'avoir suivi le [tutoriel Scala](TODO) avant de commencer ce TP(TODO footnote python).
+Il est donc important d'avoir suivi le [tutoriel Scala](https://forge.univ-lyon1.fr/EMMANUEL.COQUERY/tutoriel-scala-bda/blob/master/README.md) avant de commencer ce TP.
+
+> Attention: si vous utilisez les machines de TP, configurer votre compte comme indiqué [dans l'aide](http://liris.cnrs.fr/~ecoquery/dokuwiki/doku.php?id=enseignement:aide:maven) (faires les deux configurations: maven et sbt)
 
 ## Jeu de données
 
