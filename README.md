@@ -119,7 +119,7 @@ Sur votre machine, continuer le [tutoriel](http://spark.apache.org/docs/1.6.0/qu
 * lancer `sbt assembly` après avoir lancé `sbt package`
 * copier le fichier `target/scala-2.10/SparkTPApp-assembly-1.0.jar` sur `master`
 * lancer l'application directement depuis `master`:
-  ```shell
+  ```
   spark-submit --class SparkTPApp1 /home/p1234567/SparkTPApp-assembly-1.0.jar
   ```
 
@@ -187,7 +187,7 @@ Supprimer les fichiers résultats.
 
 * La méthode `s.split(",")` permet de découper la `String` `s` suivant la sous-chaîne `","` et permet ainsi d'obtenir la liste des valeurs.
   Par exemple:
-  ```scala
+  ```
   scala> "a,b,c,d".split(",")
   res0: Array[String] = Array(a, b, c, d)
   ```
