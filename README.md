@@ -79,7 +79,7 @@ hdfs dfs -cat /fichier/dans/hdfs
 ```
 à combiner avec, par exemple ` | less`
 
-> Remarque: les fichiers avec un nom relatifs sont traités dans HDFS comme s'il étaient référencés à partir du répertoire `/home/p1234567`
+> Remarque: les fichiers avec un nom relatifs sont traités dans HDFS comme s'il étaient référencés à partir du répertoire `/user/p1234567`
 
 La commande suivante affiche toutes commandes disponibles pour interagir avec le HDFS:
 ```shell
@@ -88,7 +88,7 @@ hdfs dfs
 
 ### Exercice
 
-* lister le contenu du répertoire `/home/p1234567`
+* lister le contenu du répertoire `/user/p1234567`
 * copier le fichier `README.md` du répertoire `/tp-data` de `master` vers le répertoire `/user/p1234567` dans le HDFS
 * vérifier que le fichier a bien été copié en listant le contenu du répertoire, puis en affichant le contenu du fichier `README.md` après sa copie dans HDFS
 
