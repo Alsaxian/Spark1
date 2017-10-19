@@ -28,10 +28,12 @@ Fichiers utiles:
 
 ## Accès au cluster Hadoop
 
-Chacun dispose d'un compte sur le cluster Hadoop (sur la machine `192.168.73.202`).
+Chacun dispose d'un compte sur le cluster Hadoop (sur la machine indiquée dans [tomuss](https://tomuss.univ-lyon1.fr), case `se_connecter_a` de l'UE `UE-INF2339M Big Data Analytics`).
 Le login est votre login étudiant.
 
-> Dans la suite du TP, il faut systématiquement remplacer `p1234567` par votre login étudiant.
+> Dans la suite du TP, il faut systématiquement remplacer:
+> * `p1234567` par votre login étudiant.
+> * `192.168.73.202` par l'adresse de la machine mentionnée ci-dessus.
 
 Il faut se connecter en utilisant la clé SSH fournie dans la case `Cle_SSH` de l'UE BigDataAnalytics sur [tomuss](http://tomusss.univ-lyon1.fr).
 
