@@ -118,7 +118,11 @@ Sur votre machine, continuer le [tutoriel](http://spark.apache.org/docs/1.6.0/qu
 * Le fichier `build.sbt`contient déjà la configuration nécessaire
 * Le fichier scala de l'application, déjà partiellement rempli est `src/main/scala/SparkTPApp1.scala`
 * Remplacer le `"YOUR_SPARK_HOME/README.md"` par `"hdfs:///user/p1234567/README.md"`
-* lancer `sbt assembly` après avoir lancé `sbt package`
+* lancer ~~`sbt assembly` après avoir lancé~~ `sbt package`
+
+> Sur les machines des salles TP, mieux vaux utiliser maven à la place de sbt qui est buggé
+> la commande à lancer est `mvn package`
+
 * copier le fichier `target/scala-2.10/SparkTPApp-assembly-1.0.jar` sur `master`
 * lancer l'application directement depuis `master`:
   ```
